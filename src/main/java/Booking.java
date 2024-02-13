@@ -1,5 +1,3 @@
-import java.awt.print.Book;
-import java.util.Scanner;
 
 public class Booking {
     private String bookingID, clientID, agencyID, price, roomID, hotelID, clientName, agencyName, hotelName, checkIn, roomNights;
