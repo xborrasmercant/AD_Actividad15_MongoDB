@@ -1,8 +1,11 @@
+import org.bson.Document;
 
 public class Booking {
-    private String bookingID, clientID, agencyID, price, roomID, hotelID, clientName, agencyName, hotelName, checkIn, roomNights;
+    private String bookingID, clientID, agencyID, roomID, hotelID, clientName, agencyName, hotelName, checkIn;
+    private Double price;
+    private int roomNights;
 
-    public Booking(String bookingID, String clientID, String agencyID, String price, String roomID, String hotelID, String clientName, String agencyName, String hotelName, String checkIn, String roomNights) {
+    public Booking(String bookingID, String clientID, String agencyID, Double price, String roomID, String hotelID, String clientName, String agencyName, String hotelName, String checkIn, int roomNights) {
         this.bookingID = bookingID;
         this.clientID = clientID;
         this.agencyID = agencyID;
@@ -48,6 +51,22 @@ public class Booking {
     }
 
 
+    public static Booking bookingFromDocument(Document document) {
+        Booking booking = new Booking(
+            document.getString("booking_id"),
+            document.getString("client_id"),
+            document.getString("agency_id"),
+            document.getDouble("price"),
+            document.getString("room_type"),
+            document.getString("hotel_id"),
+            document.getString("client_name"),
+            document.getString("agency_name"),
+            document.getString("hotel_name"),
+            document.getString("check_in"),
+            document.getInteger("room_nights"));
+
+            return booking;
+    }
 
     public String getBookingID() {
         return bookingID;
@@ -105,6 +124,14 @@ public class Booking {
         this.agencyName = agencyName;
     }
 
+    public String getHotelName() {
+        return hotelName;
+    }
+
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
+
     public String getCheckIn() {
         return checkIn;
     }
@@ -113,27 +140,19 @@ public class Booking {
         this.checkIn = checkIn;
     }
 
-    public String getRoomNights() {
-        return roomNights;
-    }
-
-    public void setRoomNights(String roomNights) {
-        this.roomNights = roomNights;
-    }
-
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public String getHotelName() {
-        return hotelName;
+    public int getRoomNights() {
+        return roomNights;
     }
 
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+    public void setRoomNights(int roomNights) {
+        this.roomNights = roomNights;
     }
 }
