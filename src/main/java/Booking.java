@@ -37,18 +37,15 @@ public class Booking {
     }
 
     public String getRoomType() {
-        if (roomID.equals("1")) {
-            return "Double";
-        } else if (roomID.equals("2")) {
-            return "Apartament";
-        } else if (roomID.equals("3")) {
-            return "Individual";
-        } else if (roomID.equals("4")) {
-            return "Suite";
-        }
-
-        return "";
+        return switch (roomID) {
+            case "1" -> "Double";
+            case "2" -> "Apartment";
+            case "3" -> "Individual";
+            case "4" -> "Suite";
+            default -> "";
+        };
     }
+
 
 
     public static Booking bookingFromDocument(Document document) {

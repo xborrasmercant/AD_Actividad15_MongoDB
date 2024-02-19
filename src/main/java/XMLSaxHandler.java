@@ -55,7 +55,7 @@ public class XMLSaxHandler extends DefaultHandler {
                     newBooking.setAgencyName(elementValue);
                     break;
                 case "price":
-                    newBooking.setPrice(elementValue);
+                    newBooking.setPrice(Double.valueOf(elementValue));
                     break;
                 case "hotel":
                     newBooking.setHotelName(elementValue);
@@ -64,7 +64,7 @@ public class XMLSaxHandler extends DefaultHandler {
                     newBooking.setCheckIn(elementValue);
                     break;
                 case "room_nights":
-                    newBooking.setRoomNights(elementValue);
+                    newBooking.setRoomNights(Integer.parseInt(elementValue));
                     break;
             }
 

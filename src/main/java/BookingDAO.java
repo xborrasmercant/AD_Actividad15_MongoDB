@@ -6,7 +6,7 @@ import org.bson.Document;
 import java.util.ArrayList;
 
 public class BookingDAO {
-    private final MongoCollection<Document> collection;
+    private MongoCollection<Document> collection;
     private MongoDBConnector connector;
 
     public BookingDAO() {
@@ -14,6 +14,7 @@ public class BookingDAO {
         collection = connector.getDatabase().getCollection("bookings");
     }
 
+    // CREATE
     public void insertBooking(Booking booking) {
 
         Document document = new Document();
@@ -32,6 +33,7 @@ public class BookingDAO {
         collection.insertOne(document);
     }
 
+    // READ
     public ArrayList<Booking> getBookings() {
 
         ArrayList<Booking> bookings = new ArrayList<>();
@@ -47,6 +49,7 @@ public class BookingDAO {
         return bookings;
     }
 
+    // CREATE
     public void updateBookingPrice(String bookingID, double newPrice) {
 
         Document filter = new Document("booking_id", bookingID);
@@ -54,6 +57,7 @@ public class BookingDAO {
         collection.updateOne(filter, update);
     }
 
+    // DELETE
     public void deleteBooking(String bookingID) {
         Document filter = new Document("booking_id", bookingID);
         collection.deleteOne(filter);
@@ -63,7 +67,7 @@ public class BookingDAO {
         Booking booking = null;
         try {
 
-            MongoCollection<Document> collection = connector.getDatabase().getCollection("bookings");
+            collection = connector.getDatabase().getCollection("bookings");
             Document query = new Document("booking_id", bookingID);
             Document document = collection.find(query).first();
 
